@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from starlette.responses import RedirectResponse
@@ -36,3 +36,12 @@ def main():
 def get_products(database: Session = Depends(get_database)):
     productos = database.query(models.Producto).all()
     return productos
+
+
+@app.get('/product/', response_model=schemas.Product)
+def get_producto_por_codigo(codigo: str = '', database: Session = Depends(get_database)):
+    product = database.query(models.Producto).get(codigo)
+    if product is not None:
+        return product
+    else:
+        raise HTTPException(status_code=400, detail='Product not found!')
