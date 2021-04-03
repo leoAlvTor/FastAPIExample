@@ -9,5 +9,5 @@ def index():
 
 
 @app.get('/name')
-def index():
+def get_name():
     return {'Name': 'Leo Alvarado!'}
