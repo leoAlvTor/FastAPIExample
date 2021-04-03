@@ -22,6 +22,6 @@ class Producto(Base):
     PRECIOVENTAUNIDAD = Column(Float)
     REPRESENTACION = Column(String)
     STOCKPAQUETE = Column(Float)
-    STOCKUNIDAD = Column(Float)
+    STOCKUNITARIO = Column(Float)
     PROVEEDOR_RUC = Column(String)
     PROMOCION = Column(String)
